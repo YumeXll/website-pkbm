@@ -558,6 +558,11 @@ section {
     max-height: 80px;
 }
 
+/* Jakarta Creative Hub logo sizing */
+.partner-logo-jch img {
+    max-height: 80px;
+}
+
 .partner-logo:hover img {
     /* Keep color on hover as well */
     filter: none;
