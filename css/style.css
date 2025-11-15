@@ -548,6 +548,16 @@ section {
     max-height: 85px;
 }
 
+/* Kemendikdasmen logo sizing */
+.partner-logo-kemendikdasmen img {
+    max-height: 80px;
+}
+
+/* Bank DKI logo sizing */
+.partner-logo-bankdki img {
+    max-height: 80px;
+}
+
 .partner-logo:hover img {
     /* Keep color on hover as well */
     filter: none;
