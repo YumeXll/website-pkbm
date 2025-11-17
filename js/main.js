@@ -1,3 +1,54 @@
+// Dark Mode Toggle Functionality
+const themeToggle = document.getElementById('themeToggle');
+
+// Initialize theme
+const initializeTheme = () => {
+    // Check for saved theme preference or default to light mode
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    setTheme(savedTheme);
+};
+
+const setTheme = (theme) => {
+    // Update document attribute
+    document.documentElement.setAttribute('data-theme', theme);
+    
+    // Update toggle button icon
+    const icon = themeToggle?.querySelector('i');
+    if (icon) {
+        icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+    }
+    
+    // Save theme preference
+    localStorage.setItem('theme', theme);
+    
+    // Update button state for accessibility
+    if (themeToggle) {
+        themeToggle.setAttribute('aria-pressed', theme === 'dark');
+    }
+};
+
+// Toggle theme
+const toggleTheme = () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    setTheme(newTheme);
+};
+
+// Event listener for theme toggle
+if (themeToggle) {
+    themeToggle.addEventListener('click', toggleTheme);
+    
+    // Also support keyboard navigation
+    themeToggle.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggleTheme();
+        }
+    });
+}
+
+// Initialize theme on page load
+initializeTheme();
 // Mobile Menu Toggle
 const mobileMenuToggle = document.getElementById('mobileMenuToggle');
 const mainNav = document.getElementById('mainNav');

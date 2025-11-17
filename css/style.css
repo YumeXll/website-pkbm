@@ -526,46 +526,11 @@ section {
 }
 
 .partner-logo img {
-    max-height: 60px;
+    max-height: 75px;
     width: auto;
     /* Show partner logos in full color */
     filter: none;
     transition: transform 0.3s ease;
-}
-
-/* Larger size for Google for Education logo */
-.partner-logo-google img {
-    max-height: 80px;
-}
-
-/* Slightly larger Jakarta logo for readability */
-.partner-logo-dkijakarta img {
-    max-height: 70px;
-}
-
-/* Enlarge Dinas Pendidikan DKI Jakarta logo */
-.partner-logo-disdik img {
-    max-height: 85px;
-}
-
-/* Kemendikdasmen logo sizing */
-.partner-logo-kemendikdasmen img {
-    max-height: 80px;
-}
-
-/* Bank DKI logo sizing */
-.partner-logo-bankdki img {
-    max-height: 80px;
-}
-
-/* Jakarta Creative Hub logo sizing */
-.partner-logo-jch img {
-    max-height: 80px;
-}
-
-/* Pertamina logo sizing */
-.partner-logo-pertamina img {
-    max-height: 80px;
 }
 
 .partner-logo:hover img {
@@ -923,39 +888,162 @@ section {
     .blog-grid {
         grid-template-columns: 1fr;
     }
-    
-    /* Dark mode improvements for partner logos and overall readability */
-    @media (prefers-color-scheme: dark) {
-        body {
-            background-color: #0b1220;
-            color: #cbd5e1;
-        }
-        
-        .top-bar {
-            background-color: #071018;
-        }
-        
-        .footer {
-            background-color: #071018;
-        }
-        
-        /* Give partner boxes a subtle panel so logos read well on dark backgrounds */
-        .partner-logo {
-            background: rgba(255,255,255,0.03);
-            box-shadow: none;
-            padding: 16px;
-        }
-        
-        /* Use blend mode so white logo backgrounds appear transparent on dark backgrounds */
-        .partner-logo img {
-            mix-blend-mode: multiply;
-            background: transparent;
-            transition: filter 0.25s ease, mix-blend-mode 0.25s ease;
-        }
-        
-        /* If any logos become too dark, gently boost brightness */
-        .partner-logo img[alt] {
-            filter: brightness(1.05) saturate(1.05);
-        }
-    }
+}
+
+/* Dark Mode Variables */
+[data-theme="dark"] {
+    --primary-color: #22c55e;
+    --secondary-color: #4ade80;
+    --dark-color: #0f172a;
+    --light-color: #1e293b;
+    --text-color: #e2e8f0;
+    --border-color: #334155;
+    --success-color: #10b981;
+    --danger-color: #ef4444;
+}
+
+/* Dark Mode Styles */
+[data-theme="dark"] body {
+    background-color: #0f172a;
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .top-bar {
+    background-color: #020617;
+}
+
+[data-theme="dark"] .header {
+    background-color: #1e293b;
+    border-bottom: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .header a {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .header a:hover {
+    color: var(--primary-color);
+}
+
+[data-theme="dark"] .main-nav a {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .main-nav a:hover {
+    color: var(--primary-color);
+}
+
+[data-theme="dark"] .dropdown {
+    background: #1e293b;
+    border: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .dropdown a {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .dropdown a:hover {
+    background-color: var(--light-color);
+    color: var(--primary-color);
+}
+
+[data-theme="dark"] .search-form {
+    background: var(--light-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .search-form input {
+    background-color: #0f172a;
+    border-color: var(--border-color);
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .search-form input:focus {
+    border-color: var(--primary-color);
+}
+
+[data-theme="dark"] .hero {
+    background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+}
+
+[data-theme="dark"] .target-audience {
+    background-color: #1e293b;
+}
+
+[data-theme="dark"] .audience-card {
+    background: #0f172a;
+    border: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .audience-card h3 {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .programs {
+    background-color: #1e293b;
+}
+
+[data-theme="dark"] .program-card {
+    background: #0f172a;
+    border: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .program-card h3 {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .section-title {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .partnership {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .partnership-header h2 {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .partner-logo {
+    background: #0f172a;
+    border: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .testimonials {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .testimonial-card {
+    background: #0f172a;
+    border: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .blog-section {
+    background-color: #1e293b;
+}
+
+[data-theme="dark"] .blog-card {
+    background: #0f172a;
+    border: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .blog-content h3 a {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .blog-content h3 a:hover {
+    color: var(--primary-color);
+}
+
+[data-theme="dark"] .footer {
+    background-color: #020617;
+}
+
+[data-theme="dark"] .btn-secondary {
+    color: #0f172a;
+}
+
+[data-theme="dark"] .social-bar {
+    background-color: var(--light-color);
+    border-bottom: 1px solid var(--border-color);
 }
