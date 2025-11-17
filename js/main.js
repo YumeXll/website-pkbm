@@ -1,6 +1,17 @@
 // Dark Mode Toggle Functionality
 const themeToggle = document.getElementById('themeToggle');
 
+// Theme Toggle Animation
+const animateThemeIcon = () => {
+    const icon = themeToggle?.querySelector('i');
+    if (icon) {
+        // Add animation class
+        icon.style.animation = 'none';
+        icon.offsetHeight; // Trigger reflow
+        icon.style.animation = 'iconRotate 0.5s ease-in-out';
+    }
+};
+
 // Initialize theme
 const initializeTheme = () => {
     // Check for saved theme preference or default to light mode
@@ -32,6 +43,9 @@ const toggleTheme = () => {
     const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
     setTheme(newTheme);
+    
+    // Add animation to the icon
+    animateThemeIcon();
 };
 
 // Event listener for theme toggle
@@ -49,6 +63,7 @@ if (themeToggle) {
 
 // Initialize theme on page load
 initializeTheme();
+
 // Mobile Menu Toggle
 const mobileMenuToggle = document.getElementById('mobileMenuToggle');
 const mainNav = document.getElementById('mainNav');
