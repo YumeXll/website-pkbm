@@ -918,6 +918,26 @@ section {
     border-bottom: 1px solid var(--border-color) !important;
 }
 
+/* Benefit cards (shared) */
+.benefits {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-top: 12px;
+}
+
+.benefit {
+    background: var(--card-bg, #fff);
+    border: 1px solid var(--border-color);
+    padding: 12px;
+    border-radius: 8px;
+    color: inherit;
+}
+
+.benefit strong {
+    color: var(--primary-color);
+}
+
 [data-theme="dark"] .page-hero h1 {
     color: var(--text-color) !important;
 }
@@ -1058,6 +1078,7 @@ section {
     --light-color: #1e293b;
     --text-color: #e2e8f0;
     --border-color: #334155;
+    --card-bg: #0f172a;
     --success-color: #10b981;
     --danger-color: #ef4444;
 }
@@ -1110,6 +1131,18 @@ section {
 [data-theme="dark"] .search-form {
     background: var(--light-color);
     border-bottom: 1px solid var(--border-color);
+}
+
+/* Ensure mobile/active nav uses dark background in dark mode (overrides earlier white) */
+[data-theme="dark"] .main-nav.active {
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: var(--light-color);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    padding: 20px;
 }
 
 [data-theme="dark"] .search-form input {

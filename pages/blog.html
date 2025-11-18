@@ -3,22 +3,22 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>APA ITU PAKET A | B | C ?? - PKBM Bale Rumawat</title>
-    <meta name="description" content="Penjelasan singkat tentang Program Paket A (Setara SD), Paket B (Setara SMP), dan Paket C (Setara SMA) untuk pendidikan kesetaraan." />
-    <link rel="stylesheet" href="../../css/style.css" />
+    <title>Blog - PKBM Bale Rumawat</title>
+    <meta name="description" content="Kumpulan artikel dan panduan pendidikan kesetaraan Paket A, B, dan C dari PKBM Bale Rumawat." />
+    <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <style>
       .page-hero { background: var(--light-color); border-bottom: 1px solid var(--border-color); padding: 40px 0; }
-      .page-hero h1 { margin: 0; text-align: center; }
       .content { padding: 50px 0; }
-      .article { max-width: 900px; margin: 0 auto; }
-      .article img { width: 100%; border-radius: 12px; }
-      .lead { font-size: 1.05rem; color: var(--text-color); margin-bottom: 18px; }
-      .section { margin-top: 30px; }
-      .section h3 { margin-bottom: 10px; color: var(--dark-color); }
-      /* .benefits/.benefit styles moved to css/style.css */
-      .back-link { margin-top: 30px; }
-      @media (max-width: 768px) { .article { padding: 0 20px; } }
+      .articles { display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+      .card { background: var(--card-bg, #fff); border: 1px solid var(--border-color); border-radius: 10px; overflow: hidden; display: flex; flex-direction: column; }
+      .card img { width: 100%; height: 170px; object-fit: cover; display:block; }
+      .card-body { padding: 16px; flex: 1; display: flex; flex-direction: column; }
+      .card-title { margin: 0 0 8px 0; font-size: 1.05rem; color: var(--dark-color); }
+      .card-excerpt { margin: 0 0 12px 0; color: var(--text-color); flex: 1; }
+      .card-meta { font-size: 0.9rem; color: var(--muted-color); margin-bottom: 12px; }
+      .btn-read { align-self: flex-start; }
+      @media (max-width: 480px) { .card img { height: 140px; } }
     </style>
   </head>
   <body>
@@ -36,8 +36,7 @@
             <i class="fab fa-whatsapp"></i>
             <span>WA: 0852-1920-9949</span>
           </div>
-            </div>
-              <p class="back-link"><a class="btn btn-secondary" href="../blog.html">Kembali ke Blog</a></p>
+        </div>
       </div>
     </div>
 
@@ -69,8 +68,8 @@
       <div class="container">
         <div class="header-content">
           <div class="logo">
-            <a href="../../index.html" aria-label="Beranda" title="Beranda">
-              <img src="../../images/logo.jpg" alt="PKBM Bale Rumawat - Purwakarta" loading="lazy" decoding="async" height="60" />
+            <a href="../index.html" aria-label="Beranda" title="Beranda">
+              <img src="../images/logo.jpg" alt="PKBM Bale Rumawat - Purwakarta" loading="lazy" decoding="async" height="60" />
             </a>
           </div>
           <nav class="main-nav" id="mainNav">
@@ -78,23 +77,23 @@
               <li class="has-dropdown">
                 <a href="#">PROFIL</a>
                 <ul class="dropdown">
-                  <li><a href="../sejarah.html">Sejarah</a></li>
-                  <li><a href="../visi-misi.html">Visi dan Misi</a></li>
-                  <li><a href="../struktur-organisasi.html">Struktur Organisasi</a></li>
-                  <li><a href="../kurikulum.html">Kurikulum</a></li>
-                  <li><a href="../sarana-prasarana.html">Sarana dan Prasarana</a></li>
-                  <li><a href="../program-pendidikan.html">Program Pendidikan</a></li>
+                  <li><a href="sejarah.html">Sejarah</a></li>
+                  <li><a href="visi-misi.html">Visi dan Misi</a></li>
+                  <li><a href="struktur-organisasi.html">Struktur Organisasi</a></li>
+                  <li><a href="kurikulum.html">Kurikulum</a></li>
+                  <li><a href="sarana-prasarana.html">Sarana dan Prasarana</a></li>
+                  <li><a href="program-pendidikan.html">Program Pendidikan</a></li>
                 </ul>
               </li>
               <li class="has-dropdown">
                 <a href="#">MEDIA</a>
                 <ul class="dropdown">
-                  <li><a href="../blog.html">Blog</a></li>
-                  <li><a href="../kalender.html">Kalender Pendidikan</a></li>
-                  <li><a href="../gallery.html">Gallery Photo</a></li>
+                  <li><a href="blog.html">Blog</a></li>
+                  <li><a href="kalender.html">Kalender Pendidikan</a></li>
+                  <li><a href="gallery.html">Gallery Photo</a></li>
                 </ul>
               </li>
-              <li><a href="../pelatihan-kerja.html">PELATIHAN KERJA</a></li>
+              <li><a href="pelatihan-kerja.html">PELATIHAN KERJA</a></li>
               <li class="has-dropdown">
                 <a href="#">PERANGKAT BELAJAR</a>
                 <ul class="dropdown">
@@ -107,8 +106,8 @@
                 <a href="#">PENDAFTARAN</a>
                 <ul class="dropdown">
                   <li><a href="https://ppdb.mitrainsancendekia.sch.id/" target="_blank">Daftar Online</a></li>
-                  <li><a href="../panduan-daftar.html">Panduan Daftar Online</a></li>
-                  <li><a href="../kemitraan.html">Kemitraan</a></li>
+                  <li><a href="panduan-daftar.html">Panduan Daftar Online</a></li>
+                  <li><a href="kemitraan.html">Kemitraan</a></li>
                 </ul>
               </li>
               <li class="has-dropdown">
@@ -147,53 +146,55 @@
     <!-- Page Hero -->
     <section class="page-hero" id="main">
       <div class="container">
-        <h1 class="section-title">APA ITU PAKET A | B | C ??</h1>
-        <p class="section-subtitle" style="text-align:center; margin-top:8px;">Panduan singkat tentang Program Pendidikan Kesetaraan</p>
+        <h1 class="section-title">Blog</h1>
+        <p class="section-subtitle" style="text-align:center; margin-top:8px;">Artikel, panduan, dan berita seputar pendidikan kesetaraan di PKBM Bale Rumawat.</p>
       </div>
     </section>
 
     <!-- Content -->
     <section class="content">
-      <div class="container article">
-        <img src="../../images/blog/blog-4.png" alt="Apa itu Paket A B C" />
-        <p class="lead">Pendidikan kesetaraan melalui Program Paket A, B, dan C memberi kesempatan bagi peserta yang ingin memperoleh ijazah setara jenjang formal (SD, SMP, SMA) tanpa mengikuti jalur sekolah formal. Di bawah ini penjelasan singkat, sasaran, dan manfaat masing-masing paket.</p>
+      <div class="container">
+        <div class="articles">
+          <article class="card">
+            <a href="blog/artikel-1.html"><img src="../images/blog/blog-1.png" alt="Kenapa tidak bisa 1 tahun" /></a>
+            <div class="card-body">
+              <h3 class="card-title"><a href="blog/artikel-1.html">Kenapa Pendidikan Paket A, B dan C Tidak Bisa Ditempuh dalam 1 Tahun?</a></h3>
+              <div class="card-meta">Panduan • Pendidikan Kesetaraan</div>
+              <p class="card-excerpt">Program pendidikan kesetaraan dirancang untuk memberi kesempatan belajar kepada mereka yang tidak dapat menempuh pendidikan formal; tetap ada standar dan masa belajar minimal yang harus dipenuhi.</p>
+              <p><a class="btn btn-primary btn-read" href="blog/artikel-1.html">Baca Selengkapnya</a></p>
+            </div>
+          </article>
 
-        <div class="section">
-          <h3>Paket A — Setara SD</h3>
-          <p>Paket A dirancang untuk peserta yang belum memiliki ijazah Sekolah Dasar. Materi pada Paket A mencakup kompetensi dasar membaca, menulis, berhitung, ilmu pengetahuan dasar dan keterampilan hidup sederhana. Program ini cocok untuk peserta dewasa maupun remaja yang ingin menyelesaikan pendidikan dasar.</p>
-          <div class="benefits">
-            <div class="benefit"><strong>Sasaran:</strong> Peserta tanpa ijazah SD atau yang ingin melengkapi pendidikan dasar.</div>
-            <div class="benefit"><strong>Durasi &amp; Evaluasi:</strong> Durasi bervariasi; ujian atau penilaian akhir setara SD.</div>
-            <div class="benefit"><strong>Manfaat:</strong> Memperoleh ijazah setara SD, membuka akses lanjutan ke Paket B atau pelatihan kerja.</div>
-          </div>
+          <article class="card">
+            <a href="blog/artikel-2.html"><img src="../images/blog/blog-2.png" alt="Cek keaslian ijazah" /></a>
+            <div class="card-body">
+              <h3 class="card-title"><a href="blog/artikel-2.html">Cek Keaslian Ijazah Paket A, B dan C</a></h3>
+              <div class="card-meta">Verifikasi • Panduan</div>
+              <p class="card-excerpt">Panduan praktis untuk memastikan ijazah paket A/B/C asli: cek hologram, nomor seri, NPSN lembaga, NISN peserta, dan konfirmasi ke Dinas Pendidikan.</p>
+              <p><a class="btn btn-primary btn-read" href="blog/artikel-2.html">Baca Selengkapnya</a></p>
+            </div>
+          </article>
+
+          <article class="card">
+            <a href="blog/artikel-4.html"><img src="../images/blog/blog-4.png" alt="Apa itu Paket A B C" /></a>
+            <div class="card-body">
+              <h3 class="card-title"><a href="blog/artikel-4.html">APA ITU PAKET A | B | C ??</a></h3>
+              <div class="card-meta">Penjelasan • Program</div>
+              <p class="card-excerpt">Penjelasan singkat tentang Program Paket A (setara SD), Paket B (setara SMP), dan Paket C (setara SMA) untuk pendidikan kesetaraan.</p>
+              <p><a class="btn btn-primary btn-read" href="blog/artikel-4.html">Baca Selengkapnya</a></p>
+            </div>
+          </article>
+          
+          <article class="card">
+            <a href="blog/artikel-3.html"><img src="../images/blog/blog-3.png" alt="Seputar PKBM" /></a>
+            <div class="card-body">
+              <h3 class="card-title"><a href="blog/artikel-3.html">Info Penting Seputar PKBM dan Pendidikan Kesetaraan</a></h3>
+              <div class="card-meta">Informasi • PKBM</div>
+              <p class="card-excerpt">Ringkasan: Pengertian PKBM, cara cek legalitas (NPSN, akreditasi, izin), dan pertanyaan umum tentang pendidikan kesetaraan.</p>
+              <p><a class="btn btn-primary btn-read" href="blog/artikel-3.html">Baca Selengkapnya</a></p>
+            </div>
+          </article>
         </div>
-
-        <div class="section">
-          <h3>Paket B — Setara SMP</h3>
-          <p>Paket B mengarah pada kompetensi setara Sekolah Menengah Pertama. Peserta mempelajari mata pelajaran inti tingkat SMP, termasuk matematika, ilmu pengetahuan, bahasa, dan keterampilan yang relevan. Paket B cocok bagi mereka yang ingin melanjutkan studi formal ke jenjang lebih tinggi atau memperoleh kualifikasi dasar untuk pekerjaan tertentu.</p>
-          <div class="benefits">
-            <div class="benefit"><strong>Sasaran:</strong> Lulusan Paket A atau peserta yang ingin setara SMP.</div>
-            <div class="benefit"><strong>Durasi &amp; Evaluasi:</strong> Durasi menyesuaikan; ada evaluasi akhir setara SMP.</div>
-            <div class="benefit"><strong>Manfaat:</strong> Ijazah setara SMP, persiapan masuk Paket C atau program vokasional.</div>
-          </div>
-        </div>
-
-        <div class="section">
-          <h3>Paket C — Setara SMA</h3>
-          <p>Paket C setara dengan Sekolah Menengah Atas dan menyiapkan peserta untuk melanjutkan ke perguruan tinggi atau memasuki dunia kerja dengan kompetensi menengah. Kurikulum mencakup mata pelajaran tingkat menengah dan tergantung pada jalur (IPA, IPS, Bahasa, atau program vokasional).</p>
-          <div class="benefits">
-            <div class="benefit"><strong>Sasaran:</strong> Peserta yang ingin diploma/ijazah setara SMA.</div>
-            <div class="benefit"><strong>Durasi &amp; Evaluasi:</strong> Bervariasi; ujian akhir setara SMA (serupa ujian nasional pada jalur formal).</div>
-            <div class="benefit"><strong>Manfaat:</strong> Ijazah setara SMA dan peluang melanjutkan pendidikan tinggi atau memasuki pekerjaan profesional.</div>
-          </div>
-        </div>
-
-        <div class="section">
-          <h3>Bagaimana Cara Daftar dan Informasi Lebih Lanjut?</h3>
-          <p>Setiap PKBM atau penyelenggara memiliki alur pendaftaran dan jadwal sendiri. Kami menyarankan untuk menghubungi PKBM Bale Rumawat langsung untuk informasi jadwal pendaftaran, persyaratan, dan biaya.</p>
-        </div>
-
-        <p class="back-link"><a class="btn btn-secondary" href="../blog.html">Kembali ke Blog</a></p>
       </div>
     </section>
 
@@ -224,6 +225,6 @@
       </div>
     </footer>
 
-    <script src="../../js/main.js"></script>
+    <script src="../js/main.js"></script>
   </body>
 </html>
