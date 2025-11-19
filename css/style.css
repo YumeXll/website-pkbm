@@ -387,6 +387,16 @@ li.has-dropdown .dropdown .has-dropdown .dropdown {
     z-index: 2;
 }
 
+/* Ensure 'Kembali ke Blog' / back-link buttons are readable in both themes */
+.back-link a.btn-secondary {
+    color: var(--dark-color);
+}
+
+[data-theme="dark"] .back-link a.btn-secondary {
+    /* dark-mode: keep text dark on the light secondary background for contrast */
+    color: var(--dark-color) !important;
+}
+
 .hero-text {
     flex: 1;
 }
