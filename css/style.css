@@ -1250,3 +1250,15 @@ section {
     background-color: var(--light-color);
     border-bottom: 1px solid var(--border-color);
 }
+
+/* Image credit styling used under article images */
+.image-credit {
+    margin-top: 8px;
+    margin-bottom: 18px;
+    font-size: 0.95rem;
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .image-credit {
+    color: var(--text-color);
+}
