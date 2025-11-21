@@ -649,6 +649,11 @@ section {
     filter: none;
 }
 
+/* Make Jakarta Creative Hub logo larger to match visual weight of other partners */
+.partner-logo-jch img {
+    max-height: 120px;
+}
+
 /* CTA Section */
 .cta-section {
     background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
