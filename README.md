@@ -14,7 +14,6 @@ website-pkbm/
 │   └── main.js               # File JavaScript utama
 ├── images/                   # Folder untuk gambar
 │   ├── logo.png
-│   ├── guru-alt-PKBM.png
 │   ├── elements/             # Elemen dekoratif
 │   ├── partners/             # Logo partner
 │   ├── testimonials/         # Foto testimonial
