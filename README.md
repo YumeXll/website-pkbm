@@ -43,7 +43,7 @@ website-pkbm/
 
 - Responsive design untuk semua ukuran layar
 - Menu navigasi dengan dropdown
-- Search functionality
+- Search functionality WIP
 - Mobile-friendly navigation
 - Smooth scrolling
 - Animation on scroll
@@ -70,14 +70,16 @@ website-pkbm/
 
 ## Kontak
 **PKBM Bale Rumawat**
-- Alamat: Jl. Kampung Baru No.11 RT.015/009, Kelapa Dua Wetan, Ciracas - Jakarta Timur
-- WhaKonta:+62 852-1920-la
-- Email:Pancadarmawijayaar1013@gmail.com
+- Alamat: Jl. Salabaya Kp. Krajan RT 07 RW 03
+Desa Sawahkulon, Kecamatan Pasawahan
+Kabupaten Purwakarta, Jawa Barat 41172
+- Whatsapp: 0852-1920-9949
+- Email: Pancadarmawijayaarum@gmail.com
 
 ## Lisensi
 
 Copyright © 2024 - PKBM Bale Rumawat
 
----
+--
 
-Made by a guy who loves an anime girls ❤️
+I love anime girls ❤️
