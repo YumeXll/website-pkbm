@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Visi &amp; Misi - PKBM Bale Rumawat</title>
+    <meta name="description" content="Visi dan misi PKBM Bale Rumawat: mengembangkan kecakapan abad ke-21 berakar pada kearifan lokal dan berwawasan global." />
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <style>
@@ -13,6 +14,7 @@
         border-bottom: 1px solid var(--border-color);
         padding: 40px 0;
       }
+      .section-title-lg { font-size:1.6rem; margin-bottom:12px; }
       .page-hero h1 {
         margin: 0;
         text-align: center;
@@ -33,7 +35,7 @@
         gap: 24px;
       }
       .vision p { font-size: 1.1rem; }
-      .mission ul {
+      .mission ol {
         margin-left: 18px;
         display: grid;
         gap: 10px;
@@ -43,7 +45,7 @@
     </style>
   </head>
   <body>
-    <a href="#main" class="skip-to-content">Skip to content</a>
+    <a href="#main-content" class="skip-to-content">Skip to content</a>
 
     <!-- Top Bar -->
     <div class="top-bar">
@@ -151,6 +153,9 @@
             </ul>
           </nav>
           <div class="header-actions">
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" aria-pressed="false" title="Toggle dark mode">
+              <i class="fas fa-moon" aria-hidden="true"></i>
+            </button>
             <button class="search-toggle" id="searchToggle" aria-label="Toggle Search">
               <i class="fas fa-search"></i>
             </button>
@@ -180,27 +185,28 @@
         <p class="section-subtitle" style="text-align:center; margin-top:8px;">Berkearifan Lokal, Berwawasan Global</p>
       </div>
     </section>
-
     <!-- Content -->
+    <main id="main-content" role="main">
     <section class="content">
       <div class="container grid-2">
         <div class="card vision">
-          <h2 class="section-title" style="font-size:1.6rem; margin-bottom:12px;">Visi</h2>
+          <h2 class="section-title section-title-lg">Visi</h2>
           <p><strong>Berkearifan Lokal, Berwawasan Global</strong> — membentuk generasi berkarakter yang berakar pada budaya sendiri, terampil, dan adaptif menghadapi tantangan dunia modern.</p>
         </div>
         <div class="card mission">
-          <h2 class="section-title" style="font-size:1.6rem; margin-bottom:12px;">Misi</h2>
-          <ul>
+          <h2 class="section-title section-title-lg">Misi</h2>
+          <ol>
             <li>Menumbuhkan kecintaan terhadap budaya dan nilai-nilai lokal melalui kegiatan pembelajaran, praktik seni, dan tradisi yang berakar pada kearifan daerah.</li>
             <li>Mengembangkan kompetensi peserta didik agar mampu bersaing di tingkat global dengan penguasaan teknologi, bahasa asing, dan keterampilan abad ke-21.</li>
             <li>Mendorong inovasi dan kreativitas berbasis budaya lokal untuk menghasilkan karya yang relevan dengan kebutuhan dunia modern.</li>
             <li>Membangun karakter beretika, toleran, dan berjiwa nasionalis sebagai fondasi dalam menghadapi tantangan global.</li>
             <li>Menjalin kerja sama dengan berbagai pihak di tingkat lokal maupun internasional guna memperluas wawasan dan pengalaman belajar.</li>
             <li>Mengintegrasikan nilai kearifan lokal dalam setiap aspek pembelajaran dan kegiatan sekolah agar peserta didik tetap berakar pada budaya sendiri sambil terbuka terhadap perubahan dunia.</li>
-          </ul>
+          </ol>
         </div>
       </div>
     </section>
+    </main>
 
     <!-- Footer -->
     <footer class="footer">
@@ -224,7 +230,7 @@
           </div>
         </div>
         <div class="footer-bottom">
-          <p>&copy; 2024 - PKBM Bale Rumawat</p>
+          <p>&copy; 2025 - PKBM Bale Rumawat</p>
         </div>
       </div>
     </footer>
