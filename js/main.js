@@ -94,22 +94,26 @@ dropdownMenus.forEach(menu => {
     });
 });
 
-// Search Toggle
+// Search Toggle (optional UI — guarded)
 const searchToggle = document.getElementById('searchToggle');
 const searchForm = document.getElementById('searchForm');
 const searchClose = document.getElementById('searchClose');
 
 if (searchToggle) {
     searchToggle.addEventListener('click', () => {
+        // If the search form is not present (disabled/commented out), do nothing
+        if (!searchForm) return;
         searchForm.classList.toggle('active');
-        if (searchForm.classList.contains('active')) {
-            searchForm.querySelector('input').focus();
+        const input = searchForm.querySelector('input');
+        if (searchForm.classList.contains('active') && input) {
+            input.focus();
         }
     });
 }
 
 if (searchClose) {
     searchClose.addEventListener('click', () => {
+        if (!searchForm) return;
         searchForm.classList.remove('active');
     });
 }
