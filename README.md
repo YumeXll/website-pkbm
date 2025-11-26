@@ -1,6 +1,6 @@
 # PKBM Bale Rumawat - Website
 
-Website resmi PKBM Bale Rumawat - Jakarta Timur
+Website resmi PKBM Bale Rumawat - Purwakarta
 
 ## Struktur Folder
 
