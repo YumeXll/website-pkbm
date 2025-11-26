@@ -49,7 +49,7 @@ website-pkbm/
 - Social media integration
 - WhatsApp integration
 - SEO friendly
-- Dark Mode
+- Dark Mode Still in beta
 
 ## Teknologi yang Digunakan
 
