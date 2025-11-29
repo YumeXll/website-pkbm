@@ -40,16 +40,16 @@ website-pkbm/
 
 ## Fitur
 
-- Responsive design untuk semua ukuran layar
-- Menu navigasi dengan dropdown
-- Search functionality WIP
-- Mobile-friendly navigation
-- Smooth scrolling
-- Animation on scroll
-- Social media integration
-- WhatsApp integration
-- SEO friendly
-- Dark Mode Still in beta
+- Responsive design untuk semua ukuran layar ✓ Can be improved
+- Menu navigasi dengan dropdown ✓
+- Search functionality ✖️ In progress
+- Mobile-friendly navigation ✓
+- Smooth scrolling ✓
+- Animation on scroll ✓
+- Social media integration ✓
+- WhatsApp integration ✓
+- SEO friendly ✓
+- Dark Mode Beta
 
 ## Teknologi yang Digunakan
 
