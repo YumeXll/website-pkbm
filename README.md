@@ -48,7 +48,7 @@ website-pkbm/
 - Animation on scroll ✓
 - Social media integration ✓
 - WhatsApp integration ✓
-- SEO friendly ✓
+- SEO friendly ✖️ No idea
 - Dark Mode Beta
 
 ## Teknologi yang Digunakan
