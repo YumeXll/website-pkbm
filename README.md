@@ -42,13 +42,13 @@ website-pkbm/
 
 - Responsive design untuk semua ukuran layar ✓ Can be improved
 - Menu navigasi dengan dropdown ✓
-- Search functionality ✖️ In progress
-- Mobile-friendly navigation ✓
+- Search functionality In progress
+- Mobile-friendly navigation Need more improvement
 - Smooth scrolling ✓
 - Animation on scroll ✓
-- Social media integration ✓
+- Social media integration In progress
 - WhatsApp integration ✓
-- SEO friendly ✖️ No idea
+- SEO friendly i guess?
 - Dark Mode Beta
 
 ## Teknologi yang Digunakan
