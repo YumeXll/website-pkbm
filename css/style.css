@@ -273,6 +273,51 @@ li.has-dropdown .dropdown .has-dropdown .dropdown {
     display: none;
 }
 
+/* Positioning container for search suggestions */
+.search-form {
+    position: relative;
+}
+
+.search-suggestions {
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    top: calc(100% + 8px);
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    max-height: 320px;
+    overflow: auto;
+    z-index: 1200;
+}
+
+.search-suggestions .suggestion {
+    padding: 10px 14px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.search-suggestions .suggestion:hover,
+.search-suggestions .suggestion[aria-selected="true"] {
+    background: var(--light-color);
+}
+
+.search-suggestions .suggestion .meta {
+    font-size: 0.85rem;
+    color: var(--text-color);
+    opacity: 0.85;
+}
+
+.search-suggestions .suggestion .title {
+    font-weight: 600;
+    color: var(--dark-color);
+}
+
+.search-no-results { padding: 18px 10px; text-align:center; color:var(--text-color); }
+
 .search-form.active {
     display: block;
 }
@@ -1033,17 +1078,42 @@ section {
     }
     
     .main-nav.active .dropdown {
-        position: static;
-        opacity: 1;
-        visibility: visible;
-        transform: none;
-        box-shadow: none;
-        padding-left: 20px;
-        display: none;
+        position: static !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        z-index: auto !important;
+        box-shadow: none !important;
+        padding-left: 20px !important;
+        display: none !important;
     }
     
     .main-nav.active .has-dropdown.active > .dropdown {
-        display: block;
+        display: block !important;
+    }
+
+    /* Override deeply-specific absolute-position rules for nested dropdowns on mobile.
+       Prefix the original complex selectors with `.main-nav.active` to increase specificity
+       and ensure dropdowns render inline beneath their parents on small screens. */
+    .main-nav.active .dropdown .has-dropdown > .dropdown,
+    .main-nav.active ul.dropdown ul.dropdown,
+    .main-nav.active .dropdown .dropdown,
+    .main-nav.active .dropdown li.has-dropdown .dropdown,
+    .main-nav.active li.has-dropdown .dropdown .has-dropdown .dropdown {
+        position: static !important;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        transform: none !important;
+        z-index: auto !important;
+        margin: 0 !important;
+        display: block !important;
+        box-shadow: none !important;
     }
     
     .hero-text h1 {
