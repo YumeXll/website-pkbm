@@ -512,7 +512,7 @@ section {
     z-index: 2;
 }
 
-/* Dark mode specific button styling */
+/* Dark mode specific button styling (disabled)
 [data-theme="dark"] .theme-toggle {
     background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
     border-color: rgba(255, 255, 255, 0.1);
@@ -526,6 +526,7 @@ section {
 [data-theme="dark"] .theme-toggle i {
     color: var(--text-color);
 }
+*/
 
 /* Icon animation */
 .theme-toggle i {

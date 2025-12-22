@@ -1,4 +1,4 @@
-// Dark Mode Toggle Functionality
+/* Dark Mode Toggle Functionality (temporarily disabled)
 const themeToggle = document.getElementById('themeToggle');
 
 // Quick diagnostic flag: set to `true` to enable scroll animations/effects.
@@ -54,19 +54,20 @@ const toggleTheme = () => {
 
 // Event listener for theme toggle
 if (themeToggle) {
-    themeToggle.addEventListener('click', toggleTheme);
+    // themeToggle.addEventListener('click', toggleTheme);
     
     // Also support keyboard navigation
-    themeToggle.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            toggleTheme();
-        }
-    });
+    // themeToggle.addEventListener('keydown', (e) => {
+    //     if (e.key === 'Enter' || e.key === ' ') {
+    //         e.preventDefault();
+    //         toggleTheme();
+    //     }
+    // });
 }
 
 // Initialize theme on page load
-initializeTheme();
+// initializeTheme();
+*/
 
 // Mobile Menu Toggle
 const mobileMenuToggle = document.getElementById('mobileMenuToggle');
