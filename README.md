@@ -38,34 +38,12 @@ website-pkbm/
         └── artikel-4.html
 ```
 
-## Fitur
-
-- Responsive design untuk semua ukuran layar ✓ Can be improved
-- Menu navigasi dengan dropdown ✓
-- Search functionality In progress
-- Mobile-friendly navigation Need more improvement
-- Smooth scrolling ✓
-- Animation on scroll ✓
-- Social media integration In progress
-- WhatsApp integration ✓
-- SEO friendly i guess?
-- Dark Mode Beta
-
 ## Teknologi yang Digunakan
 
 - HTML5
 - CSS3 (Modern CSS dengan CSS Grid & Flexbox)
 - JavaScript (Vanilla JS)
 - Font Awesome Icons
-- Google Fonts (optional)
-
-## Browser Support
-
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
-- Opera (latest)
 
 ## Kontak
 **PKBM Bale Rumawat**
@@ -80,16 +58,3 @@ Kabupaten Purwakarta, Jawa Barat 41172
 Copyright © 2024 - PKBM Bale Rumawat
 
 --
-
-
-
-
-
-
-
-
-
-
-
-
-I love anime girls ❤️

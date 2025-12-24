@@ -1338,3 +1338,36 @@ section {
 [data-theme="dark"] .image-credit {
     color: var(--text-color);
 }
+
+/* Mobile-only partners carousel: show one logo at a time */
+/* Keep carousel hidden by default; show only on small screens */
+.partners-carousel { display: none; }
+@media (max-width: 768px) {
+    .partners-grid { display: none; }
+    /* larger carousel on mobile for visibility */
+    .partners-carousel { display: block; position: relative; height: 140px; overflow: hidden; }
+
+    /* stack logos on top of each other so we can crossfade */
+    .partners-carousel .partner-logo {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%) translateY(8px) scale(0.98);
+        opacity: 0;
+        width: 100%;
+        text-align: center;
+        transition: opacity 600ms cubic-bezier(.2,.9,.2,1), transform 600ms cubic-bezier(.2,.9,.2,1);
+        pointer-events: none;
+    }
+
+    /* fallback: show first item if JS hasn't initialized */
+    .partners-carousel .partner-logo:first-child { opacity: 1; transform: translate(-50%, -50%) translateY(0) scale(1); pointer-events: auto; }
+
+    .partners-carousel .partner-logo.active {
+        opacity: 1;
+        transform: translate(-50%, -50%) translateY(0) scale(1);
+        pointer-events: auto;
+    }
+
+    .partners-carousel .partner-logo img { max-height: 110px; max-width: 90%; object-fit: contain; display: inline-block; }
+}

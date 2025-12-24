@@ -69,6 +69,9 @@ if (themeToggle) {
 // initializeTheme();
 */
 
+// Fallback diagnostic flag for scroll effects (kept `false` while debugging)
+const ENABLE_SCROLL_EFFECTS = false;
+
 // Mobile Menu Toggle
 const mobileMenuToggle = document.getElementById('mobileMenuToggle');
 const mainNav = document.getElementById('mainNav');
@@ -682,3 +685,64 @@ document.head.appendChild(style);
 // Console message
 console.log('%c PKBM Bale Rumawat ', 'background: #16a34a; color: white; padding: 10px; font-size: 16px; font-weight: bold;');
 console.log('%c Website by PKBM Bale Rumawat Development Team ', 'background: #84cc16; color: #14532d; padding: 5px; font-size: 12px;');
+
+// Partner logos mobile carousel
+(() => {
+    const CAROUSEL_BREAKPOINT = 768;
+    const carousel = document.querySelector('.partners-carousel');
+    let timer = null;
+    let current = 0;
+
+    const start = () => {
+        if (!carousel) return;
+        stop();
+        const items = Array.from(carousel.querySelectorAll('.partner-logo'));
+        if (!items.length) return;
+        // ensure only first is active
+        items.forEach((it, i) => it.classList.toggle('active', i === 0));
+        current = 0;
+        const interval = parseInt(carousel.dataset.carouselInterval, 10) || 3000;
+        carousel.classList.add('initialized');
+        carousel.setAttribute('aria-hidden', 'false');
+        console.log('partners-carousel: start', { count: items.length, interval });
+        if (items.length > 1) {
+            timer = setInterval(() => {
+                try {
+                    items[current].classList.remove('active');
+                    current = (current + 1) % items.length;
+                    items[current].classList.add('active');
+                    // debug
+                    console.log('partners-carousel: show', current);
+                } catch (e) {
+                    console.error('partners-carousel error', e);
+                }
+            }, interval);
+        } else {
+            console.log('partners-carousel: only one item, no rotation');
+        }
+    };
+
+    const stop = () => {
+        if (timer) { clearInterval(timer); timer = null; }
+        if (carousel) {
+            carousel.classList.remove('initialized');
+            carousel.setAttribute('aria-hidden', 'true');
+            const items = carousel.querySelectorAll('.partner-logo');
+            items.forEach(it => it.classList.remove('active'));
+        }
+    };
+
+    const check = () => {
+        if (!carousel) return;
+        if (window.innerWidth <= CAROUSEL_BREAKPOINT) start(); else stop();
+    };
+
+    // init
+    window.addEventListener('resize', () => { check(); });
+    // ensure we initialize after DOM is ready (helps file:// and slow loads)
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => { check(); });
+    } else {
+        try { check(); } catch (e) {}
+    }
+})();
