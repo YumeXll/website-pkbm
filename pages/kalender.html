@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kalender Pendidikan - PKBM Bale Rumawat</title>
+    <meta name="description" content="Kalender pendidikan PKBM Bale Rumawat - jadwal dan kegiatan penting." />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+      /* Page-specific calendar styles */
+      .page-hero { padding: 28px 0; text-align: center; }
+      .calendar-wrap { padding: 36px 0; }
+      .calendar-card { background: var(--card-bg, #fff); border: 1px solid var(--border-color); border-radius: 12px; padding: 18px; box-shadow: 0 6px 18px rgba(0,0,0,0.04); }
+      .calendar-controls { display:flex; gap:8px; align-items:center; justify-content:space-between; margin-bottom:12px; }
+      .calendar-controls .left { display:flex; gap:8px; align-items:center; }
+      .btn-ghost { background:transparent; border:1px solid var(--border-color); padding:6px 10px; border-radius:8px; cursor:pointer; }
+      .month-title { font-weight:600; font-size:1.1rem; }
+      .calendar { display:grid; grid-template-columns: repeat(7, 1fr); gap:6px; }
+      .calendar .dow { text-align:center; font-weight:600; padding:6px 0; color:var(--dark-color); }
+      .cell { min-height:76px; background:transparent; padding:6px; border-radius:8px; position:relative; }
+      .cell.inactive { color: #9ca3af; }
+      .cell .date-num { position:absolute; top:8px; right:8px; font-size:0.9rem; }
+      .event-dot { display:block; width:8px; height:8px; border-radius:50%; background:var(--primary-color); margin-top:28px; margin-left:6px; }
+      .events-list { margin-top:14px; }
+      .event-item { padding:8px; border-radius:8px; background:rgba(34,197,94,0.06); margin-bottom:8px; }
+      @media (max-width:720px) {
+        .calendar { gap:4px; }
+        .cell { min-height:90px; }
+      }
+    </style>
+  </head>
+  <body>
+    <a href="#main-content" class="skip-to-content">Skip to content</a>
+    <!-- Top Bar + Header copied from site template -->
+    <div class="top-bar"><div class="container"><div class="top-bar-content"><div class="location"><i class="fas fa-map-marker-alt"></i><span>Purwakarta, Jawa Barat</span></div><div class="contact-info"><i class="fab fa-whatsapp"></i><span>0852-1920-9949</span></div></div></div></div>
+    <div class="social-bar"><div class="container"><div class="social-links"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-youtube"></i></a></div></div></div>
+    <header class="header"><div class="container"><div class="header-content"><div class="logo"><a href="../index.html" aria-label="Beranda"><img src="../images/partners/logo.jpg" alt="PKBM" height="60"></a></div></div></div></header>
+
+    <main id="main-content">
+      <section class="page-hero">
+        <div class="container">
+          <h1 class="section-title">Kalender Pendidikan</h1>
+          <p>Jadwal kegiatan, pendaftaran, dan acara penting PKBM Bale Rumawat.</p>
+        </div>
+      </section>
+
+      <section class="calendar-wrap">
+        <div class="container">
+          <div class="calendar-card">
+            <div class="calendar-controls">
+              <div class="left">
+                <button id="prevBtn" class="btn-ghost"><i class="fas fa-chevron-left"></i></button>
+                <button id="nextBtn" class="btn-ghost"><i class="fas fa-chevron-right"></i></button>
+                <button id="todayBtn" class="btn-ghost">Hari Ini</button>
+              </div>
+              <div class="month-title" id="monthTitle">Month</div>
+              <div></div>
+            </div>
+
+            <div class="calendar" id="calendar">
+              <div class="dow">Min</div><div class="dow">Sen</div><div class="dow">Sel</div><div class="dow">Rab</div><div class="dow">Kam</div><div class="dow">Jum</div><div class="dow">Sab</div>
+              <!-- date cells inserted by JS -->
+            </div>
+
+            <div class="events-list" id="eventsList">
+              <!-- events details shown here when a day is selected -->
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer"><div class="container"><p>&copy; PKBM Bale Rumawat</p></div></footer>
+
+    <script>
+      (function(){
+        const events = {
+          // sample events (YYYY-MM-DD)
+          '2025-01-10': [{title:'Pendaftaran Gelombang 1', time:'09:00'}],
+          '2025-01-15': [{title:'Ujian Akhir Semester', time:'08:00'}],
+          '2025-02-05': [{title:'Workshop Kewirausahaan', time:'13:00'}]
+        };
+
+        const monthTitle = document.getElementById('monthTitle');
+        const calendar = document.getElementById('calendar');
+        const eventsList = document.getElementById('eventsList');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const todayBtn = document.getElementById('todayBtn');
+
+        let view = new Date();
+        const pad = n => n.toString().padStart(2,'0');
+
+        function render(){
+          // clear previous date cells (keep first 7 dow headers)
+          calendar.querySelectorAll('.cell').forEach(n=>n.remove());
+          const year = view.getFullYear();
+          const month = view.getMonth();
+          const firstDay = new Date(year, month, 1).getDay();
+          const daysInMonth = new Date(year, month+1, 0).getDate();
+
+          monthTitle.textContent = view.toLocaleString('id-ID', { month: 'long', year: 'numeric' });
+
+          // compute leading blank days (JS: Sunday=0 -> our Min)
+          let startIndex = firstDay; // 0..6
+          // fill prev month's tail
+          const prevDays = new Date(year, month, 0).getDate();
+          for(let i=0;i<startIndex;i++){
+            const d = prevDays - startIndex + 1 + i;
+            const cell = makeCell(year, month-1, d, true);
+            calendar.appendChild(cell);
+          }
+
+          // current month days
+          for(let d=1; d<=daysInMonth; d++){
+            const cell = makeCell(year, month, d, false);
+            calendar.appendChild(cell);
+          }
+
+          // trailing days to complete 42 cells total (6 weeks)
+          const totalCells = calendar.querySelectorAll('.cell').length;
+          const needed = 42 - totalCells;
+          for(let i=1;i<=needed;i++){
+            const cell = makeCell(year, month+1, i, true);
+            calendar.appendChild(cell);
+          }
+        }
+
+        function iso(y,m,d){
+          const mm = (m+1).toString().padStart(2,'0');
+          return `${y}-${mm}-${pad(d)}`;
+        }
+
+        function makeCell(y,m,d,inactive){
+          const el = document.createElement('div');
+          el.className = 'cell' + (inactive? ' inactive':'');
+          el.innerHTML = `<div class="date-num">${d}</div>`;
+          const iy = new Date(y,m,d);
+          const key = iso(iy.getFullYear(), iy.getMonth(), iy.getDate());
+          if(events[key] && events[key].length){
+            const dot = document.createElement('span'); dot.className='event-dot'; el.appendChild(dot);
+            el.addEventListener('click', ()=> showEvents(key, iy));
+          } else {
+            el.addEventListener('click', ()=> showEvents(key, iy));
+          }
+          return el;
+        }
+
+        function showEvents(key, date){
+          eventsList.innerHTML = '';
+          const h = document.createElement('h3');
+          h.textContent = 'Kegiatan pada ' + date.toLocaleDateString('id-ID');
+          eventsList.appendChild(h);
+          if(events[key] && events[key].length){
+            events[key].forEach(ev=>{
+              const div = document.createElement('div'); div.className='event-item';
+              div.innerHTML = `<strong>${ev.title}</strong><div>${ev.time || ''}</div>`;
+              eventsList.appendChild(div);
+            });
+          } else {
+            const p = document.createElement('div'); p.className='event-item'; p.textContent='Tidak ada kegiatan.'; eventsList.appendChild(p);
+          }
+        }
+
+        prevBtn.addEventListener('click', ()=>{ view.setMonth(view.getMonth()-1); render(); });
+        nextBtn.addEventListener('click', ()=>{ view.setMonth(view.getMonth()+1); render(); });
+        todayBtn.addEventListener('click', ()=>{ view = new Date(); render(); });
+
+        render();
+      })();
+    </script>
+
+    <script src="../js/main.js"></script>
+  </body>
+</html>
