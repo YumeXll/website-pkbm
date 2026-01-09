@@ -636,6 +636,26 @@ const createWhatsAppButton = () => {
     whatsappBtn.innerHTML = '<i class="fab fa-whatsapp"></i>';
     whatsappBtn.setAttribute('aria-label', 'Chat WhatsApp');
     document.body.appendChild(whatsappBtn);
+    
+    // Add touch/mouse interaction feedback for mobile: add/remove classes on events
+    const addTouchActive = () => whatsappBtn.classList.add('touch-active');
+    const removeTouchActive = () => whatsappBtn.classList.remove('touch-active');
+    const doPulse = () => {
+        whatsappBtn.classList.remove('pulse');
+        // trigger reflow
+        void whatsappBtn.offsetWidth;
+        whatsappBtn.classList.add('pulse');
+        setTimeout(() => whatsappBtn.classList.remove('pulse'), 900);
+    };
+
+    // touchstart and mousedown -> active state + pulse
+    whatsappBtn.addEventListener('touchstart', (e) => { addTouchActive(); doPulse(); }, {passive:true});
+    whatsappBtn.addEventListener('mousedown', (e) => { addTouchActive(); }, {passive:true});
+
+    // touchend/touchcancel and mouseup/mouseleave remove active state
+    ['touchend','touchcancel','mouseup','mouseleave'].forEach(evt => {
+        whatsappBtn.addEventListener(evt, removeTouchActive, {passive:true});
+    });
 };
 
 // Uncomment to add WhatsApp float button
@@ -744,5 +764,64 @@ console.log('%c Website by PKBM Bale Rumawat Development Team ', 'background: #8
         document.addEventListener('DOMContentLoaded', () => { check(); });
     } else {
         try { check(); } catch (e) {}
+    }
+})();
+
+// Mobile-only entrance animations for index page
+(() => {
+    const MOBILE_MAX = 768;
+    const isMobile = () => window.innerWidth <= MOBILE_MAX;
+    const isIndex = () => {
+        // match index root or explicit index.html
+        return location.pathname === '/' || /index\.html$/.test(location.pathname);
+    };
+
+    const animateList = (els, opts = {}) => {
+        const { base = 0, step = 120, cls = 'animate-fade-up' } = opts;
+        els.forEach((el, i) => {
+            if (!el) return;
+            el.classList.add('mobile-animate');
+            if (cls) el.classList.add(cls);
+            el.style.animationDelay = (base + i * step) + 'ms';
+        });
+    };
+
+    const init = () => {
+        try {
+            if (!isMobile() || !isIndex()) return;
+
+            // Hero text and CTA
+            const heroText = document.querySelector('.hero-text');
+            const heroBtn = document.querySelector('.hero-text .btn');
+            if (heroText) animateList([heroText], { base: 80, step: 0 });
+            if (heroBtn) {
+                heroBtn.classList.add('mobile-animate', 'animate-pop');
+                heroBtn.style.animationDelay = '220ms';
+            }
+
+            // Audience cards stagger
+            const audienceCards = Array.from(document.querySelectorAll('.audience-card'));
+            if (audienceCards.length) animateList(audienceCards, { base: 320, step: 120 });
+
+            // Partner logos (show subtle entrance)
+            const partners = Array.from(document.querySelectorAll('.partners-grid .partner-logo'));
+            if (partners.length) animateList(partners, { base: 620, step: 90 });
+
+            // Programs cards
+            const programs = Array.from(document.querySelectorAll('.program-card'));
+            if (programs.length) animateList(programs, { base: 920, step: 110 });
+
+            // Blog cards (optional subtle entrance)
+            const blogs = Array.from(document.querySelectorAll('.blog-card'));
+            if (blogs.length) animateList(blogs, { base: 1240, step: 80 });
+        } catch (e) {
+            // fail silently
+        }
+    };
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
     }
 })();
