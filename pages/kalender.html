@@ -63,15 +63,16 @@
       .events-list { margin-top:14px; }
       .event-item { padding:8px; border-radius:8px; background:rgba(34,197,94,0.06); margin-bottom:8px; }
       @media (max-width:720px) {
-        .calendar { gap:6px; }
-        .cell { min-height:88px; padding:6px; }
+        /* increase spacing and touch targets on small screens */
+        .calendar { gap:12px; }
+        .cell { min-height:110px; padding:10px; }
         /* center badge on narrow screens and make it larger */
         .cell .date-num {
-          left:50%; right:auto; transform:translateX(-50%); top:10px;
-          min-width:36px; height:36px; font-size:1rem; border-width:2px;
+          left:50%; right:auto; transform:translateX(-50%); top:12px;
+          min-width:42px; height:42px; font-size:1.05rem; border-width:2px;
         }
         /* ensure events/dot stack below the badge */
-        .event-dot { margin-top:40px; }
+        .event-dot { margin-top:56px; }
         /* muted style for days outside the current month */
         .cell.inactive { opacity:0.48; }
         .cell.inactive .date-num {
