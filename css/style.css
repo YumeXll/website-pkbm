@@ -1371,3 +1371,47 @@ section {
 
     .partners-carousel .partner-logo img { max-height: 110px; max-width: 90%; object-fit: contain; display: inline-block; }
 }
+
+/* Mobile-only entrance animations (index.html) */
+@media (max-width: 768px) {
+    /* initial hidden state for animated elements */
+    .mobile-animate {
+        opacity: 0;
+        transform: translateY(18px) scale(0.995);
+    }
+
+    /* fade-up entrance used with JS-set delays */
+    @keyframes fadeUpMobile {
+        0% { opacity: 0; transform: translateY(18px) scale(0.995); }
+        70% { opacity: 1; transform: translateY(-4px) scale(1.002); }
+        100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .animate-fade-up {
+        animation-name: fadeUpMobile;
+        animation-duration: 640ms;
+        animation-timing-function: cubic-bezier(.2,.9,.2,1);
+        animation-fill-mode: forwards;
+    }
+
+    /* subtle pop for hero button */
+    @keyframes heroBtnPop {
+        0% { transform: translateY(6px) scale(.98); opacity: 0; }
+        60% { transform: translateY(-4px) scale(1.03); opacity: 1; }
+        100% { transform: translateY(0) scale(1); opacity: 1; }
+    }
+
+    .hero .btn.mobile-animate.animate-pop {
+        transform-origin: center;
+        animation-name: heroBtnPop;
+        animation-duration: 680ms;
+        animation-timing-function: cubic-bezier(.2,.9,.2,1);
+        animation-fill-mode: both;
+    }
+
+    /* small visual tweak for staggered partner logos */
+    .partners-grid .partner-logo.mobile-animate,
+    .partners-carousel .partner-logo.mobile-animate {
+        transform-origin: center;
+    }
+}
