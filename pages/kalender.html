@@ -19,6 +19,7 @@
       .calendar { display:grid; grid-template-columns: repeat(7, 1fr); gap:6px; }
       .calendar .dow { text-align:center; font-weight:600; padding:6px 0; color:var(--dark-color); }
       .cell { min-height:76px; background:transparent; padding:6px; border-radius:8px; position:relative; }
+      .cell { cursor: pointer; transition: background 180ms ease, transform 160ms ease, box-shadow 180ms ease; }
       .cell.inactive { color: #9ca3af; }
       .cell .date-num { position:absolute; top:8px; right:8px; font-size:0.9rem; }
       /* circular, more visible date badge */
@@ -102,6 +103,30 @@
       /* general stacking and visual polish for badges */
       .cell .date-num { z-index:3; background-clip: padding-box; }
       .cell.today .date-num { z-index:4; border-color: var(--primary-color, #22c55e); color:#fff; background: var(--primary-color, #22c55e); box-shadow: 0 8px 22px rgba(34,197,94,0.12); }
+      /* Selected state when a user clicks a date */
+      .cell.selected {
+        background: rgba(34,197,94,0.04);
+        box-shadow: 0 8px 20px rgba(16,185,129,0.06);
+        transform: translateY(-4px);
+      }
+
+      .cell.selected .date-num {
+        background: var(--primary-color, #22c55e);
+        color: #fff;
+        border-color: var(--primary-color, #22c55e);
+        box-shadow: 0 10px 28px rgba(34,197,94,0.12);
+      }
+
+      /* subtle pop when a cell is selected */
+      @keyframes kp-select-pop {
+        0% { transform: scale(.96); }
+        60% { transform: scale(1.08); }
+        100% { transform: scale(1); }
+      }
+
+      .cell.selected .date-num.pop {
+        animation: kp-select-pop 420ms cubic-bezier(.2,.9,.2,1) both;
+      }
     </style>
   </head>
   <body>
@@ -346,13 +371,49 @@
           el.dataset.date = key;
           el.innerHTML = `<div class="date-num">${d}</div>`;
           if(events[key] && events[key].length){
-            const dot = document.createElement('span'); dot.className='event-dot'; el.appendChild(dot);
-            el.addEventListener('click', ()=> showEvents(key, iy));
+              const dot = document.createElement('span'); dot.className='event-dot'; el.appendChild(dot);
+              el.addEventListener('click', ()=> { selectDate(key); showEvents(key, iy); });
           } else {
-            el.addEventListener('click', ()=> showEvents(key, iy));
+              el.addEventListener('click', ()=> { selectDate(key); showEvents(key, iy); });
           }
           return el;
         }
+
+          // mark the clicked date as selected (single selection)
+          function selectDate(key){
+            // remove previous selection
+            calendar.querySelectorAll('.cell.selected').forEach(n=>n.classList.remove('selected'));
+
+            // determine today's key so we can toggle the today highlight
+            const now = new Date();
+            const todayKey = iso(now.getFullYear(), now.getMonth(), now.getDate());
+
+            // if selecting a different date than today, remove the visual 'today' highlight
+            if(key !== todayKey){
+              calendar.querySelectorAll('.cell.today').forEach(n=>n.classList.remove('today'));
+            }
+
+            const cell = calendar.querySelector('.cell[data-date="'+key+'"]');
+            if(cell){
+              cell.classList.add('selected');
+
+              // if the selected date is today, ensure the today class remains present
+              if(key === todayKey){
+                cell.classList.add('today');
+              }
+
+              // animate badge pop
+              const badge = cell.querySelector('.date-num');
+              if(badge){
+                badge.classList.remove('pop');
+                // force reflow
+                void badge.offsetWidth;
+                badge.classList.add('pop');
+                // remove pop after animation so it can retrigger
+                setTimeout(()=> badge.classList.remove('pop'), 700);
+              }
+            }
+          }
 
         function showEvents(key, date){
           eventsList.innerHTML = '';
