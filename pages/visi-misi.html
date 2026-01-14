@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <style>
-      /* Page-specific light styles */
+      /* Page-specific light styles + color accents */
       .page-hero {
         background: var(--light-color);
         border-bottom: 1px solid var(--border-color);
@@ -19,6 +19,22 @@
         margin: 0;
         text-align: center;
       }
+      /* accent underline below hero title */
+      .page-hero .section-title {
+        color: var(--primary-color);
+        position: relative;
+      }
+      .page-hero .section-title::after {
+        content: '';
+        display: block;
+        width: 68px;
+        height: 6px;
+        margin: 12px auto 0;
+        border-radius: 8px;
+        background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        opacity: 0.95;
+      }
+
       .content {
         padding: 50px 0;
       }
@@ -34,18 +50,78 @@
         grid-template-columns: 1fr 1fr;
         gap: 24px;
       }
-      .vision p { font-size: 1.1rem; }
-      .mission ol {
-        margin-left: 18px;
-        display: grid;
-        gap: 10px;
-        list-style: decimal;
+      .vision p { font-size: 1.1rem; line-height:1.75; margin-bottom:18px; }
+
+      /* Vision card accent */
+      .card.vision {
+        border-left: 8px solid var(--primary-color);
+        padding-left: 22px;
+        background: linear-gradient(180deg, rgba(34,197,94,0.03), transparent);
       }
+      .card.vision .section-title-lg { color: var(--dark-color); }
+
+      /* Mission card accent and numbered list styling */
+      .card.mission {
+        border-left: 8px solid var(--secondary-color);
+        padding-left: 22px;
+        background: linear-gradient(180deg, rgba(132,204,22,0.03), transparent);
+      }
+      .mission ol { counter-reset: mission; margin: 0; padding: 0; list-style: none; }
+      .mission ol li {
+        counter-increment: mission;
+        position: relative;
+        /* increase left padding so the badge is visually separated from the text */
+        padding: 14px 18px 18px 72px;
+        margin-bottom: 12px;
+        background: rgba(0,0,0,0.015);
+        border-radius: 10px;
+      }
+      .mission ol li::before {
+        content: counter(mission);
+        position: absolute;
+        /* move badge further left */
+        left: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        color: white;
+        background: linear-gradient(180deg, var(--primary-color), var(--secondary-color));
+        box-shadow: 0 6px 18px rgba(16,185,129,0.12);
+      }
+
+      /* subtle separator line under each mission item for readability */
+      .mission ol li::after {
+        content: '';
+        position: absolute;
+        left: 72px;
+        right: 12px;
+        bottom: 8px;
+        height: 1px;
+        background: rgba(16,24,28,0.04);
+        border-radius: 1px;
+      }
+
+      /* make paragraph inside cards more readable by adding spacing */
+      .card p { margin-bottom: 16px; line-height: 1.7; }
+
+      /* Tweak spacing on very small screens so items don't feel cramped and align badge to first line */
+      @media (max-width: 480px) {
+        .mission ol li { padding-left: 60px; padding-top: 12px; padding-bottom: 18px; }
+        /* align badge with the first line of text (top-align) */
+        .mission ol li::before { left: 10px; width: 32px; height: 32px; top: 14px; transform: none; }
+        .mission ol li::after { left: 60px; }
+      }
+
       @media (max-width: 992px) { .grid-2 { grid-template-columns: 1fr; } }
     </style>
   </head>
   <body>
-    <a href="#main-content" class="skip-to-content">Skip to content</a>
 
     <!-- Top Bar -->
     <div class="top-bar">
@@ -191,7 +267,7 @@
     <section class="page-hero" id="main">
       <div class="container">
         <h1 class="section-title">Visi &amp; Misi</h1>
-        <p class="section-subtitle" style="text-align:center; margin-top:8px;">Berkearifan Lokal, Berwawasan Global</p>
+        <p class="section-subtitle" style="text-align:center; margin-top:8px;"
       </div>
     </section>
     <!-- Content -->
