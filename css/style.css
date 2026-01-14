@@ -266,6 +266,49 @@ li.has-dropdown .dropdown .has-dropdown .dropdown {
     display: none;
 }
 
+/* Desktop: make sure the search control appears before the login button
+   so Login visually sits to the right of the search on wide screens. */
+@media (min-width: 900px) {
+    .header-actions {
+        margin-left: auto;
+        align-items: center;
+    }
+
+    .header-actions .search-toggle { order: 1; }
+    .header-actions .login-btn { order: 2; margin-left: 8px; }
+    .header-actions .mobile-menu-toggle { order: 3; }
+}
+
+/* Center navigation between logo and header actions on desktop */
+@media (min-width: 900px) {
+    .main-nav {
+        margin: 0 auto;
+    }
+
+    .main-nav > ul {
+        justify-content: center;
+    }
+}
+
+/* Strong centering: absolutely center the nav between logo and actions on wide screens */
+@media (min-width: 900px) {
+    .header-content { position: relative; }
+
+    .main-nav {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 50;
+        margin: 0; /* reset any earlier auto margins */
+    }
+
+    /* more breathing room between menu items on large screens */
+    .main-nav > ul {
+        gap: 40px;
+    }
+}
+
 /* Search Form */
 .search-form {
     background: var(--light-color);
