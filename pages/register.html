@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Register — PKBM</title>
+    <style>
+        :root{
+            --bg:#f5f7fb;
+            --card:#ffffff;
+            --muted:#6b7280;
+            --primary:#2563eb; /* primary color (adjust to match your other pages) */
+            --primary-600:#1d4ed8;
+            --danger:#ef4444;
+            --radius:10px;
+            --shadow: 0 6px 20px rgba(16,24,40,0.08);
+            --container-width:420px;
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+        }
+
+        html,body{height:100%}
+        body{
+            margin:0;
+            background:linear-gradient(180deg, rgba(37,99,235,0.06), rgba(245,247,251,0.6)), var(--bg);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            padding:40px 20px;
+            color:#0f172a;
+            -webkit-font-smoothing:antialiased;
+            -moz-osx-font-smoothing:grayscale;
+        }
+
+        .wrap{
+            width:100%;
+            max-width:var(--container-width);
+            background:var(--card);
+            border-radius:var(--radius);
+            box-shadow:var(--shadow);
+            padding:28px;
+        }
+
+        .brand{
+            display:flex;
+            align-items:center;
+            gap:12px;
+            margin-bottom:18px;
+        }
+        .logo{
+            width:44px;
+            height:44px;
+            background:linear-gradient(135deg,var(--primary),var(--primary-600));
+            border-radius:10px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            color:white;
+            font-weight:700;
+            letter-spacing:0.6px;
+            font-size:18px;
+        }
+        h1{
+            font-size:18px;
+            margin:0;
+        }
+        p.lead{
+            margin:6px 0 18px;
+            color:var(--muted);
+            font-size:13px;
+        }
+
+        form{display:flex;flex-direction:column;gap:12px}
+        label{font-size:13px;color:#111827}
+        .field{
+            display:flex;
+            flex-direction:column;
+            gap:6px;
+        }
+        input[type="text"], input[type="email"], input[type="password"]{
+            height:44px;
+            padding:0 12px;
+            border-radius:8px;
+            border:1px solid #e6e9ef;
+            background:transparent;
+            font-size:14px;
+            outline:none;
+            transition:box-shadow .15s, border-color .15s;
+        }
+        input:focus{
+            box-shadow:0 0 0 4px rgba(37,99,235,0.08);
+            border-color:var(--primary-600);
+        }
+
+        .row{
+            display:flex;
+            gap:10px;
+        }
+        .row .field{flex:1}
+
+        .helper{font-size:12px;color:var(--muted);margin-top:6px}
+        .actions{
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            gap:10px;
+            margin-top:6px;
+        }
+
+        button[type="submit"]{
+            background:linear-gradient(180deg,var(--primary),var(--primary-600));
+            color:white;
+            border:0;
+            padding:10px 14px;
+            border-radius:8px;
+            cursor:pointer;
+            font-weight:600;
+            box-shadow:0 6px 12px rgba(37,99,235,0.12);
+        }
+        button[type="submit"]:disabled{opacity:0.6;cursor:not-allowed}
+
+        .link{
+            font-size:13px;
+            color:var(--primary-600);
+            text-decoration:none;
+        }
+
+        .foot{
+            margin-top:14px;
+            font-size:12px;
+            color:var(--muted);
+            text-align:center;
+        }
+
+        .inline{
+            display:flex;
+            align-items:center;
+            gap:8px;
+        }
+
+        .error{
+            color:var(--danger);
+            font-size:12px;
+            margin-top:6px;
+        }
+
+        @media (max-width:480px){
+            body{padding:24px}
+            .wrap{padding:20px}
+        }
+    </style>
+</head>
+<body>
+    <main class="wrap" role="main">
+        <div class="brand">
+            <div class="logo">PK</div>
+            <div>
+                <h1>PKBM — Create account</h1>
+                <p class="lead">Join PKBM to access courses and materials.</p>
+            </div>
+        </div>
+
+        <form id="registerForm" novalidate>
+            <div class="row">
+                <div class="field">
+                    <label for="firstName">Nama Depan</label>
+                    <input id="firstName" name="firstName" type="text" autocomplete="given-name" required />
+                </div>
+                <div class="field">
+                    <label for="lastName">Nama Belakang</label>
+                    <input id="lastName" name="lastName" type="text" autocomplete="family-name" required />
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" autocomplete="email" required />
+                <div id="emailHelp" class="helper">Kami akan mengirimkan email konfirmasi</div>
+            </div>
+
+            <div class="row">
+                <div class="field">
+                    <label for="password">Password</label>
+                    <input id="password" name="password" type="password" minlength="8" autocomplete="new-password" required />
+                    <div class="helper">At least 8 characters.</div>
+                </div>
+                <div class="field">
+                    <label for="confirm">Konfirmasi</label>
+                    <input id="confirm" name="confirm" type="password" autocomplete="new-password" required />
+                </div>
+            </div>
+
+            <div id="error" class="error" role="alert" aria-live="polite" style="display:none"></div>
+
+            <div class="actions">
+                <button type="submit" id="submitBtn">Buat Akun</button>
+                <div class="inline">
+                    <span class="helper">Already a member?</span>
+                    <a class="link" href="/login.html">Login</a>
+                </div>
+            </div>
+        </form>
+
+        <div class="foot">Dengan membuat akun, Anda setuju dengan <a class="link" href="/terms.html">Syarat dan Ketentuan</a> serta <a class="link" href="/privacy.html">Kebijakan Privasi</a> Kami</div>
+    </main>
+
+    <script>
+        (function(){
+            const form = document.getElementById('registerForm');
+            const pwd = document.getElementById('password');
+            const confirm = document.getElementById('confirm');
+            const err = document.getElementById('error');
+            const submit = document.getElementById('submitBtn');
+
+            function showError(msg){
+                err.textContent = msg;
+                err.style.display = msg ? 'block' : 'none';
+            }
+
+            form.addEventListener('submit', function(e){
+                e.preventDefault();
+                showError('');
+                if(!form.checkValidity()){
+                    showError('Please complete all required fields correctly.');
+                    return;
+                }
+                if(pwd.value.length < 8){
+                    showError('Password must be at least 8 characters.');
+                    pwd.focus();
+                    return;
+                }
+                if(pwd.value !== confirm.value){
+                    showError('Passwords do not match.');
+                    confirm.focus();
+                    return;
+                }
+
+                submit.disabled = true;
+                submit.textContent = 'Creating...';
+
+                // Placeholder: replace with real submit (fetch/XHR) to your backend
+                setTimeout(()=>{
+                    submit.disabled = false;
+                    submit.textContent = 'Create account';
+                    // On success, redirect or show a message
+                    window.location.href = '/welcome.html';
+                }, 900);
+            });
+        })();
+    </script>
+</body>
+</html>
