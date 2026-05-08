@@ -55,7 +55,7 @@ Kabupaten Purwakarta, Jawa Barat 41172
 
 ## Lisensi
 
-Copyright © 2024 - PKBM Bale Rumawat
+Copyright © 2024-2026 - PKBM Bale Rumawat
 
 
 --
