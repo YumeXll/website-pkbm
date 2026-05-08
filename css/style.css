@@ -415,6 +415,12 @@ li.has-dropdown .dropdown .has-dropdown .dropdown {
     color: var(--primary-color);
 }
 
+.btn-primary:active {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
 .btn-secondary {
     background-color: var(--secondary-color);
     color: var(--dark-color);
@@ -424,6 +430,12 @@ li.has-dropdown .dropdown .has-dropdown .dropdown {
 .btn-secondary:hover {
     background-color: transparent;
     color: var(--secondary-color);
+}
+
+.btn-secondary:active {
+    background-color: var(--secondary-color);
+    color: var(--dark-color);
+    border-color: var(--secondary-color);
 }
 
 /* Hero Section */
@@ -1510,4 +1522,456 @@ section {
     .partners-carousel .partner-logo.mobile-animate {
         transform-origin: center;
     }
+}
+
+/* ========================================
+   PAGE-SPECIFIC STYLES
+   ======================================== */
+
+/* Calendar Page (kalender.html) */
+.calendar-wrap {
+    padding: 36px 0;
+}
+
+.calendar-card {
+    background: var(--card-bg, #fff);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 18px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
+}
+
+.calendar-controls {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.calendar-controls .left {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.btn-ghost {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    padding: 6px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.month-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+}
+
+.calendar .dow {
+    text-align: center;
+    font-weight: 600;
+    padding: 6px 0;
+    color: var(--dark-color);
+}
+
+.cell {
+    min-height: 76px;
+    background: transparent;
+    padding: 6px;
+    border-radius: 8px;
+    position: relative;
+    cursor: pointer;
+    transition: background 180ms ease, transform 160ms ease, box-shadow 180ms ease;
+}
+
+.cell.inactive {
+    color: #9ca3af;
+}
+
+.cell .date-num {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 30px;
+    height: 30px;
+    line-height: 1;
+    background: var(--card-bg, #fff);
+    border: 2px solid var(--border-color);
+    padding: 0 6px;
+    border-radius: 50%;
+    color: var(--text-color, #111);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+    z-index: 3;
+    background-clip: padding-box;
+}
+
+.cell.today .date-num {
+    z-index: 4;
+    border-color: var(--primary-color, #22c55e);
+    color: #fff;
+    background: var(--primary-color, #22c55e);
+    box-shadow: 0 8px 22px rgba(34, 197, 94, 0.12);
+}
+
+.cell.today .date-num.pulse {
+    animation: kp-pulse-desktop 900ms ease-out 1;
+}
+
+@keyframes kp-pulse-desktop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.18); }
+    100% { transform: scale(1.06); }
+}
+
+@keyframes kp-pulse-mobile {
+    0% { transform: translateX(-50%) scale(1); }
+    50% { transform: translateX(-50%) scale(1.18); }
+    100% { transform: translateX(-50%) scale(1.06); }
+}
+
+.cell.selected {
+    background: rgba(34, 197, 94, 0.04);
+    box-shadow: 0 8px 20px rgba(16, 185, 129, 0.06);
+    transform: translateY(-4px);
+}
+
+.cell.selected .date-num {
+    background: var(--primary-color, #22c55e);
+    color: #fff;
+    border-color: var(--primary-color, #22c55e);
+    box-shadow: 0 10px 28px rgba(34, 197, 94, 0.12);
+}
+
+.cell.selected .date-num.pop {
+    animation: kp-select-pop 420ms cubic-bezier(0.2, 0.9, 0.2, 1) both;
+}
+
+@keyframes kp-select-pop {
+    0% { transform: scale(0.96); }
+    60% { transform: scale(1.08); }
+    100% { transform: scale(1); }
+}
+
+.event-dot {
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    margin-top: 28px;
+    margin-left: 6px;
+}
+
+.events-list {
+    margin-top: 14px;
+}
+
+.event-item {
+    padding: 8px;
+    border-radius: 8px;
+    background: rgba(34, 197, 94, 0.06);
+    margin-bottom: 8px;
+}
+
+@media (max-width: 1024px) {
+    .cell .date-num {
+        min-width: 42px;
+        height: 42px;
+        font-size: 1.05rem;
+        border-width: 3px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    }
+    .cell {
+        min-height: 96px;
+    }
+}
+
+@media (max-width: 720px) {
+    .calendar-card {
+        padding: 10px;
+    }
+    .calendar {
+        gap: 6px;
+        grid-template-columns: repeat(7, minmax(0, 1fr));
+    }
+    .cell {
+        min-height: 100px;
+        padding: 8px;
+    }
+    .cell .date-num {
+        top: 8px;
+        left: 8px;
+        right: auto;
+        transform: none;
+        min-width: 36px;
+        height: 36px;
+        font-size: 0.95rem;
+        border-width: 2px;
+    }
+    .event-dot {
+        margin-top: 48px;
+    }
+    .cell.inactive {
+        opacity: 0.48;
+    }
+    .cell.inactive .date-num {
+        border-color: #e6e6e6;
+        color: #9ca3af;
+        background: transparent;
+        box-shadow: none;
+    }
+    .cell .date-num.pulse {
+        animation-name: kp-pulse-mobile;
+    }
+    .events-list {
+        margin-top: 18px;
+    }
+    .event-item {
+        padding: 10px;
+        font-size: 0.95rem;
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 720px) {
+    .cell.inactive {
+        opacity: 0.56;
+    }
+    .cell.inactive .date-num {
+        border-color: #e6e6e6;
+        color: #9ca3af;
+        background: transparent;
+        box-shadow: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .calendar-controls {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+    .calendar-controls .left {
+        justify-content: center;
+    }
+    .month-title {
+        text-align: center;
+    }
+    .cell {
+        min-height: 88px;
+        padding: 6px;
+    }
+    .cell .date-num {
+        top: 6px;
+        left: 6px;
+        min-width: 32px;
+        height: 32px;
+        font-size: 0.9rem;
+    }
+    .event-dot {
+        margin-top: 42px;
+    }
+    .calendar {
+        gap: 4px;
+    }
+}
+
+/* Visi & Misi Page (visi-misi.html) */ 
+
+.section-title-lg {
+    font-size: 1.6rem;
+    margin-bottom: 12px;
+}
+
+.content {
+    padding: 50px 0;
+}
+
+.card {
+    background: var(--card-bg, #fff);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+.card p {
+    margin-bottom: 16px;
+    line-height: 1.7;
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.vision p {
+    font-size: 1.1rem;
+    line-height: 1.75;
+    margin-bottom: 18px;
+}
+
+.card.vision {
+    border-left: 8px solid var(--primary-color);
+    padding-left: 22px;
+    background: linear-gradient(180deg, rgba(34, 197, 94, 0.03), transparent);
+}
+
+.card.vision .section-title-lg {
+    color: var(--dark-color);
+}
+
+.card.mission {
+    border-left: 8px solid var(--secondary-color);
+    padding-left: 22px;
+    background: linear-gradient(180deg, rgba(132, 204, 22, 0.03), transparent);
+}
+
+.mission ol {
+    counter-reset: mission;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.mission ol li {
+    counter-increment: mission;
+    position: relative;
+    padding: 14px 18px 18px 72px;
+    margin-bottom: 12px;
+    background: rgba(0, 0, 0, 0.015);
+    border-radius: 10px;
+}
+
+.mission ol li::before {
+    content: counter(mission);
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: white;
+    background: linear-gradient(180deg, var(--primary-color), var(--secondary-color));
+    box-shadow: 0 6px 18px rgba(16, 185, 129, 0.12);
+}
+
+.mission ol li::after {
+    content: '';
+    position: absolute;
+    left: 72px;
+    right: 12px;
+    bottom: 8px;
+    height: 1px;
+    background: rgba(16, 24, 28, 0.04);
+    border-radius: 1px;
+}
+
+@media (max-width: 992px) {
+    .grid-2 {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .mission ol li {
+        padding-left: 60px;
+        padding-top: 12px;
+        padding-bottom: 18px;
+    }
+    .mission ol li::before {
+        left: 10px;
+        width: 32px;
+        height: 32px;
+        top: 14px;
+        transform: none;
+    }
+    .mission ol li::after {
+        left: 60px;
+    }
+}
+
+/* Sejarah Page (sejarah.html) */
+
+.page-title-section {
+    background-color: #16a34a;
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.page-title-section h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    color: white;
+}
+
+.content-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px;
+}
+
+.content-container h2 {
+    color: #16a34a;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    border-bottom: 3px solid #84cc16;
+    padding-bottom: 10px;
+}
+
+.content-container p {
+    line-height: 1.8;
+    margin-bottom: 15px;
+    color: #334155;
+}
+
+/* Page Hero (shared across multiple pages) */
+
+.page-hero {
+    background: var(--light-color);
+    border-bottom: 1px solid var(--border-color);
+    padding: 40px 0;
+    text-align: center;
+}
+
+.page-hero h1 {
+    margin: 0;
+    text-align: center;
+}
+
+.page-hero .section-title {
+    color: var(--primary-color);
+    position: relative;
+}
+
+.page-hero .section-title::after {
+    content: '';
+    display: block;
+    width: 68px;
+    height: 6px;
+    margin: 12px auto 0;
+    border-radius: 8px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    opacity: 0.95;
 }
